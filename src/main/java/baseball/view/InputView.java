@@ -9,7 +9,7 @@ public class InputView {
 
         checkIsThreeDigit(answer);
         checkIsNumber(answer);
-        checkNotDuplication(answer);
+        checkDuplication(answer);
 
         return answer;
     }
@@ -24,26 +24,31 @@ public class InputView {
 
     private void checkIsThreeDigit(String userInput){
         if (userInput.length()!=3){
-            throw new RuntimeException();
+            throw new IllegalArgumentException();
         }
     }
 
     private void checkIsNumber(String userInput){
         try{
-            int number=Integer.parseInt(userInput);
+            Integer.parseInt(userInput);
         }catch (Exception e){
-            throw new RuntimeException();
+            throw new IllegalArgumentException();
         }
     }
 
-    //숫자 3자리라는 건 확인 완료 됐고, 중복만 확인하면 됨
-    private void checkNotDuplication(String userInput){
-
+    private void checkDuplication(String userInput){
+        int fstNum=(int)(userInput.charAt(0));
+        int scdNum=(int)(userInput.charAt(1));
+        int thdNum=(int)(userInput.charAt(2));
+        if(fstNum==scdNum || fstNum==thdNum || scdNum==thdNum ){
+            throw new IllegalArgumentException();
+        }
     }
 
-    //단순하게 string이 1인지 2인지 비교
     private void checkIsOneOrTwo(String userInput){
-
+        if(!userInput.equals("1") && !userInput.equals("2")){
+            throw new IllegalArgumentException();
+        }
     }
 
 }

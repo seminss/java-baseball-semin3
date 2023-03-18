@@ -18,4 +18,8 @@ public class RandomNumGenerator {
         return randomNum;
     }
 
+    public void clearRandomNum(){
+        randomNum.clear();
+    }
+
 }
